@@ -46,6 +46,6 @@ class Checker():
         self.cursor.execute('SELECT * FROM Cities WHERE CityName=?', city_name)
         city = self.cursor.fetchone()
         if city is None:
-            print('Such a city does not exist in database!\n\n')
+            print('Such a city does not exist in database! Insert it first!\n\n')
             return False
         return True
