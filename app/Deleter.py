@@ -48,11 +48,9 @@ class Deleter(Worker):
 
 
     def _delete_selected_swimmer(self):
-        last_name = input('Swimmer last name: ')
         self.cursor.execute("""
         --sql
-        SELECT SwimmerID, LastName, FirstName FROM Swimmers
-        WHERE Lastname = ?;""", last_name)
+        SELECT SwimmerID, LastName, FirstName FROM Swimmers;""")
         print('')
         self._pretty_print()
         print('')
