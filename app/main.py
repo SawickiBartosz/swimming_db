@@ -1,11 +1,14 @@
 import os
+
 import pyodbc
+
 from Checker import Checker
 from Deleter import Deleter
 from Inserter import Inserter
 from Modifier import Modifier
 from Reporter import Reporter
-from settings import username, password
+from settings import password, username
+
 
 def connect(username, password):
         server = 'localhost' 
