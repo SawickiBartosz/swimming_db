@@ -28,16 +28,17 @@ class Inserter(Worker):
         first_name = input('First name: ')
         sex = input('Sex (0=Not Known 1=Male 2=Female ): ')
         club_short_name = input('Club short name: ')
+
+        # check if club exists
+        if not self.checker.check_club_exist(club_short_name):
+            return
+        
         coach_last_name = input('Coach last name: ')
         coach_first_name = input('Coach first name: ')
 
         # check if coach exists
         coach_id = self.checker.check_coach_exist(coach_first_name, coach_last_name)
         if not coach_id:
-            return
-
-        # check if club exists
-        if not self.checker.check_club_exist(club_short_name):
             return
         
         # insert a row
@@ -56,19 +57,21 @@ class Inserter(Worker):
         print('\nType in information')
         last_name = input('Swimmer last name: ')
         first_name = input('Swimmer first name: ')
-        start_date = input('Date (YYYY-MM-DD): ')
-        swim_time = input('Swim time (hh:mm[:ss][.fractional seconds])')
-        distance_name = input('Distance name ([distance in m] [style])')
 
         # check if swimmer exists
         swimmer_id = self.checker.check_swimmer_exist(first_name, last_name)
         if not swimmer_id:
             return
 
+        distance_name = input('Distance name ([distance in m] [style])')
+
         # check if distance exists
         if not self.checker.check_distance_exist(distance_name):
            return
 
+        start_date = input('Start date (YYYY-MM-DD): ')
+        swim_time = input('Swim time (hh:mm[:ss][.fractional seconds])')
+        
         # insert a row
         cursor.execute("""
             INSERT INTO Starts 

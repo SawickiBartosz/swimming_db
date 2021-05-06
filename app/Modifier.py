@@ -94,16 +94,17 @@ class Modifier(Worker):
         first_name = input('First name: ')
         sex = input('Sex (0=Not Known 1=Male 2=Female ): ')
         club_short_name = input('Club short name: ')
+
+        # check if club exists
+        if not self.checker.check_club_exist(club_short_name):
+            return
+            
         coach_last_name = input('Coach last name: ')
         coach_first_name = input('Coach first name: ')
 
         # check if coach exists
         coach_id = self.checker.check_coach_exist(coach_first_name, coach_last_name)
         if not coach_id:
-            return
-
-        # check if club exists
-        if not self.checker.check_club_exist(club_short_name):
             return
 
         self.cursor.execute("""
