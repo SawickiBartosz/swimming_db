@@ -6,6 +6,7 @@ from Checker import Checker
 from Deleter import Deleter
 from Inserter import Inserter
 from Modifier import Modifier
+from Printer import Printer
 from Reporter import Reporter
 from settings import password, username
 
@@ -27,7 +28,8 @@ def menu():
     print('2. Delete records')
     print('3. Modify record')
     print('4. Print reports')
-    print('5. Exit')
+    print('5. Print tables')
+    print('6. Exit')
     choice = input()
     return choice
 
@@ -48,10 +50,11 @@ def main(*args, **kwargs):
     deleter = Deleter(cnxn, cursor, checker)
     modifier = Modifier(cnxn, cursor, checker)
     reporter = Reporter(cnxn, cursor, checker)
+    printer = Printer(cnxn, cursor, checker)
 
     while True:
         choice = menu()
-        if choice == '5':
+        if choice == '6':
             break
         elif choice == '1':
             inserter.run()
@@ -61,6 +64,8 @@ def main(*args, **kwargs):
             modifier.run()
         elif choice == '4':
             reporter.run()
+        elif choice == '5':
+            printer.run()
         else:
             cls()
             print('Wrong input! Try again!')
