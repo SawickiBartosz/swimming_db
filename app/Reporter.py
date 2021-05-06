@@ -41,6 +41,8 @@ class Reporter(Worker):
 
         if not self.checker.check_distance_exist(distance_name):
             return
+        
+        sex = input('Sex (0=Not Known 1=Male 2=Female ): ')
 
         self.cursor.execute("""--sql
             SELECT  sw.FirstName AS FirstName,
@@ -52,7 +54,7 @@ class Reporter(Worker):
             JOIN Swimmers sw on s.SwimmerID=sw.SwimmerID
             JOIN Coaches c on sw.CoachID=c.CoachID
             JOIN Clubs cl on cl.ShortName=sw.ClubShortName
-            WHERE DistanceName = ?
+            WHERE DistanceName = ? AND sw.Sex = ?
             GROUP BY 
                 sw.SwimmerID, 
                 sw.FirstName, 
@@ -61,5 +63,5 @@ class Reporter(Worker):
                 c.FirstName, 
                 c.LastName
             ORDER BY BestTime ASC;""",
-            distance_name)
+            distance_name, sex)
         self._pretty_print()
