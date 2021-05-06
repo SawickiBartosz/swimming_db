@@ -53,7 +53,6 @@ class Deleter(Worker):
         SELECT SwimmerID, LastName, FirstName FROM Swimmers;""")
         print('')
         self._pretty_print()
-        print('')
         swimmer_id = input('Type id of a swimmer to delete: ')
         self.cursor.execute("""
             DELETE FROM Swimmers WHERE SwimmerID=?;

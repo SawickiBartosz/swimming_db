@@ -22,7 +22,7 @@ def connect(username, password):
         return cnxn, cursor
 
 def menu():
-    print('Choose a number:')
+    print('\n\nChoose a number:')
     print('1. Insert new data')
     print('2. Delete records')
     print('3. Modify record')
