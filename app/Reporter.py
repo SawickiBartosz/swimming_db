@@ -15,7 +15,7 @@ class Reporter(Worker):
             return
 
     def _report_pb(self):
-        print('\n Whose personal bests you want to show?')
+        print('\nWhose personal bests you want to show?')
         last_name = input('Last name: ')
         first_name = input('First name: ')
 
@@ -36,7 +36,7 @@ class Reporter(Worker):
         self._pretty_print()
 
     def _report_ranking(self):
-        print('\n Which distance you want to show?')
+        print('\nWhich distance you want to show?')
         distance_name = input('Distance : ')
 
         if not self.checker.check_distance_exist(distance_name):

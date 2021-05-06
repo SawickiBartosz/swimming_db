@@ -23,7 +23,7 @@ class Inserter(Worker):
 
     def _insert_swimmers(self):
         cursor = self.cursor
-        print('\n Type in information')
+        print('\nType in information')
         last_name = input('Last name: ')
         first_name = input('First name: ')
         sex = input('Sex (0=Not Known 1=Male 2=Female ): ')
@@ -53,7 +53,7 @@ class Inserter(Worker):
 
     def _insert_starts(self):
         cursor = self.cursor
-        print('\n Type in information')
+        print('\nType in information')
         last_name = input('Swimmer last name: ')
         first_name = input('Swimmer first name: ')
         start_date = input('Date (YYYY-MM-DD): ')
@@ -81,7 +81,7 @@ class Inserter(Worker):
 
     def _insert_coaches(self):
         cursor = self.cursor
-        print('\n Type in information')
+        print('\nType in information')
         last_name = input('Coach last name: ')
         first_name = input('Coach first name: ')
         club_short_name = input('Club short name: ')
@@ -101,7 +101,7 @@ class Inserter(Worker):
 
     def _insert_clubs(self):
         cursor = self.cursor
-        print('\n Type in information')
+        print('\nType in information')
         short_name = input('Unique club short name (5 characters): ')
         club_name = input('Club full name: ')
         city_name = input('City: ')
