@@ -73,7 +73,17 @@ INSERT INTO Distances
 VALUES 
     ('50 dowolny'),
     ('100 dowolny'),
-    ('200 motylkowy')
+    ('200 dowolny'),
+    ('50 motylkowy'),
+    ('100 motylkowy'),
+    ('200 motylkowy'),
+    ('50 grzbietowy'),
+    ('100 grzbietowy'),
+    ('200 grzbietowy'),
+    ('50 klasyczny'),
+    ('100 klasyczny'),
+    ('200 klasyczny'),
+    ('200 zmienny')
 
 
 INSERT INTO Coaches 
@@ -96,4 +106,7 @@ INSERT INTO Starts
 VALUES 
     (1, '2021-04-28', '00:00:25.67', '50 dowolny'),
     (2, '2021-04-29', '00:00:49.32', '100 dowolny'),
-    (3, '2021-04-28', '00:00:50.71', '100 dowolny')
+    (3, '2021-04-28', '00:00:50.71', '100 dowolny'),
+    (2, '2021-04-28', '00:01:59.67', '200 dowolny'),
+    (2, '2021-04-29', '00:00:49.32', '100 dowolny'),
+    (3, '2021-04-28', '00:00:50.71', '100 grzbietowy')
