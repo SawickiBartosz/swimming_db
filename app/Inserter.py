@@ -8,6 +8,8 @@ class Inserter(Worker):
         print('2. Starts')
         print('3. Coaches')
         print('4. Clubs')
+        print('5. Cities')
+
         print('Anything else to exit')
         choice = input()
         if choice == '1':
@@ -18,6 +20,8 @@ class Inserter(Worker):
             self._insert_coaches()
         elif choice == '4':
             self._insert_clubs()
+        elif choice == '5':
+            self._insert_cities()
         else:
             return
 
@@ -121,3 +125,18 @@ class Inserter(Worker):
                 (?, ?, ?)""", short_name, club_name, city_name)
         self.connection.commit()
         print("INSERTED")
+
+
+    def _insert_cities(self):
+        cursor = self.cursor
+        print('\nType in information')
+        city_name = input('City: ')
+        # insert a row
+        cursor.execute("""
+            INSERT INTO Cities 
+                (CityName)
+            VALUES 
+                (?)""", city_name)
+        self.connection.commit()
+        print("INSERTED")
+

@@ -30,7 +30,7 @@ class Modifier(Worker):
         new_club = input("New club short name (5 characters): ")
 
         # check if club exists
-        if not self.checker.check_club_exist(club_short_name):
+        if not self.checker.check_club_exist(new_club):
             return
 
         self.cursor.execute("""
@@ -98,7 +98,7 @@ class Modifier(Worker):
         # check if club exists
         if not self.checker.check_club_exist(club_short_name):
             return
-            
+
         coach_last_name = input('Coach last name: ')
         coach_first_name = input('Coach first name: ')
 
