@@ -32,14 +32,18 @@ class Modifier(Worker):
         # check if club exists
         if not self.checker.check_club_exist(new_club):
             return
+        try:
+            self.cursor.execute("""
+            UPDATE Swimmers 
+                SET ClubShortName = ?
+                WHERE LastName=? AND FirstName=?;
+            """, new_club, swimmer_last_name, swimmer_first_name)
+            self.connection.commit()
+            print('Modified ' + str(self.cursor.rowcount) + ' row(s)')
+        except Exception as e:
+            print(str(e) + '\n')
+            print('An error occured. Please try again and check your data\n\n')
 
-        self.cursor.execute("""
-        UPDATE Swimmers 
-            SET ClubShortName = ?
-            WHERE LastName=? AND FirstName=?;
-        """, new_club, swimmer_last_name, swimmer_first_name)
-        self.connection.commit()
-        print('Modified ' + str(self.cursor.rowcount) + ' row(s)')
 
 
     def _mod_swimmers_coach(self):
@@ -53,14 +57,18 @@ class Modifier(Worker):
         coach_id = self.checker.check_coach_exist(coach_first_name, coach_last_name)
         if not coach_id:
             return
+        try:
+            self.cursor.execute("""
+            UPDATE Swimmers 
+                SET CoachID = ?
+                WHERE LastName=? AND FirstName=?;
+            """, coach_id, swimmer_last_name, swimmer_first_name)
+            self.connection.commit()
+            print('Modified ' + str(self.cursor.rowcount) + ' row(s)')
+        except Exception as e:
+            print(str(e) + '\n')
+            print('An error occured. Please try again and check your data\n\n')
 
-        self.cursor.execute("""
-        UPDATE Swimmers 
-            SET CoachID = ?
-            WHERE LastName=? AND FirstName=?;
-        """, coach_id, swimmer_last_name, swimmer_first_name)
-        self.connection.commit()
-        print('Modified ' + str(self.cursor.rowcount) + ' row(s)')
 
     def _mod_coach_club(self):
         print("Which coach you want to modify?")
@@ -72,13 +80,18 @@ class Modifier(Worker):
         if not self.checker.check_club_exist(new_club):
             return
        
-        self.cursor.execute("""
-        UPDATE Coaches 
-            SET ClubShortName = ?
-            WHERE LastName=? AND FirstName=?;
-        """, new_club, coach_last, coach_first)
-        self.connection.commit()
-        print('Modified ' + str(self.cursor.rowcount) + ' row(s)')
+        try:
+            self.cursor.execute("""
+            UPDATE Coaches 
+                SET ClubShortName = ?
+                WHERE LastName=? AND FirstName=?;
+            """, new_club, coach_last, coach_first)
+            self.connection.commit()
+            print('Modified ' + str(self.cursor.rowcount) + ' row(s)')
+        except Exception as e:
+            print(str(e) + '\n')
+            print('An error occured. Please try again and check your data\n\n')
+
 
     def _mod_all_swimmer(self):
         self.cursor.execute("""
@@ -107,9 +120,13 @@ class Modifier(Worker):
         if not coach_id:
             return
 
-        self.cursor.execute("""
-            UPDATE Swimmers 
-                 SET LastName=?, FirstName=?, Sex=?, ClubShortName=?, CoachID=?
-            WHERE SwimmerID = ?;""", 
-                last_name, first_name, sex, club_short_name, coach_id[0], swimmer_id)
-        self.connection.commit()
+        try:
+            self.cursor.execute("""
+                UPDATE Swimmers 
+                    SET LastName=?, FirstName=?, Sex=?, ClubShortName=?, CoachID=?
+                WHERE SwimmerID = ?;""", 
+                    last_name, first_name, sex, club_short_name, coach_id[0], swimmer_id)
+            self.connection.commit()
+        except Exception as e:
+            print(str(e) + '\n')
+            print('An error occured. Please try again and check your data\n\n')

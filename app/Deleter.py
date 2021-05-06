@@ -54,9 +54,14 @@ class Deleter(Worker):
         print('')
         self._pretty_print()
         swimmer_id = input('Type id of a swimmer to delete: ')
-        self.cursor.execute("""
-            DELETE FROM Swimmers WHERE SwimmerID=?;
-            """, swimmer_id)
-        self.connection.commit()
-        print('Deleted ' + str(self.cursor.rowcount) + ' row(s)')
+        try:
+            self.cursor.execute("""
+                DELETE FROM Swimmers WHERE SwimmerID=?;
+                """, swimmer_id)
+            self.connection.commit()
+            print('Deleted ' + str(self.cursor.rowcount) + ' row(s)')
+        except Exception as e:
+            print(str(e) + '\n')
+            print('An error occured. Please try again and check your data\n\n')
+
 

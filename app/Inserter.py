@@ -45,15 +45,20 @@ class Inserter(Worker):
         if not coach_id:
             return
         
-        # insert a row
-        cursor.execute("""
-            INSERT INTO Swimmers 
-                (LastName, FirstName, Sex, ClubShortName, CoachID)
-            VALUES 
-                (?, ?, ?, ?, ?)""", 
-                last_name, first_name, sex, club_short_name, coach_id[0])
-        self.connection.commit()
-        print("INSERTED")
+        try:
+            # insert a row
+            cursor.execute("""
+                INSERT INTO Swimmers 
+                    (LastName, FirstName, Sex, ClubShortName, CoachID)
+                VALUES 
+                    (?, ?, ?, ?, ?)""", 
+                    last_name, first_name, sex, club_short_name, coach_id[0])
+            self.connection.commit()
+            print("INSERTED")
+        except Exception as e:
+            print(str(e) + '\n')
+            print('An error occured. Please try again and check your data\n\n')
+
 
 
     def _insert_starts(self):
@@ -76,15 +81,18 @@ class Inserter(Worker):
         start_date = input('Start date (YYYY-MM-DD): ')
         swim_time = input('Swim time (hh:mm[:ss][.fractional seconds])')
         
-        # insert a row
-        cursor.execute("""
-            INSERT INTO Starts 
-                (SwimmerID, StartDate, SwimTime, DistanceName)
-            VALUES 
-                (?, ?, ?, ?)""", swimmer_id[0], start_date, swim_time, distance_name)
-        self.connection.commit()
-        print("INSERTED")
-
+        try:
+            # insert a row
+            cursor.execute("""
+                INSERT INTO Starts 
+                    (SwimmerID, StartDate, SwimTime, DistanceName)
+                VALUES 
+                    (?, ?, ?, ?)""", swimmer_id[0], start_date, swim_time, distance_name)
+            self.connection.commit()
+            print("INSERTED")
+        except Exception as e:
+            print(str(e) + '\n')
+            print('An error occured. Please try again and check your data\n\n')
 
     def _insert_coaches(self):
         cursor = self.cursor
@@ -96,15 +104,20 @@ class Inserter(Worker):
         # check if club exists
         if not self.checker.check_club_exist(club_short_name):
             return
-    
-        # insert a row
-        cursor.execute("""
-            INSERT INTO Coaches 
-                (LastName, FirstName, ClubShortName)
-            VALUES 
-                (?, ?, ?)""", last_name, first_name, club_short_name)
-        self.connection.commit()
-        print("INSERTED")
+        try:
+            # insert a row
+            cursor.execute("""
+                INSERT INTO Coaches 
+                    (LastName, FirstName, ClubShortName)
+                VALUES 
+                    (?, ?, ?)""", last_name, first_name, club_short_name)
+            self.connection.commit()
+            print("INSERTED")
+        except Exception as e:
+            print(str(e) + '\n')
+            print('An error occured. Please try again and check your data\n\n')
+
+
 
     def _insert_clubs(self):
         cursor = self.cursor
@@ -116,27 +129,35 @@ class Inserter(Worker):
         # check if city exists
         if not self.checker.check_city_exist(city_name):
             return
-    
-        # insert a row
-        cursor.execute("""
-            INSERT INTO Clubs 
-                (ShortName, ClubName, CityName)
-            VALUES 
-                (?, ?, ?)""", short_name, club_name, city_name)
-        self.connection.commit()
-        print("INSERTED")
+        try:
+            # insert a row
+            cursor.execute("""
+                INSERT INTO Clubs 
+                    (ShortName, ClubName, CityName)
+                VALUES 
+                    (?, ?, ?)""", short_name, club_name, city_name)
+            self.connection.commit()
+            print("INSERTED")
+        except Exception as e:
+            print(str(e) + '\n')
+            print('An error occured. Please try again and check your data\n\n')
+
 
 
     def _insert_cities(self):
         cursor = self.cursor
         print('\nType in information')
         city_name = input('City: ')
-        # insert a row
-        cursor.execute("""
-            INSERT INTO Cities 
-                (CityName)
-            VALUES 
-                (?)""", city_name)
-        self.connection.commit()
-        print("INSERTED")
 
+        try:
+            # insert a row
+            cursor.execute("""
+                INSERT INTO Cities 
+                    (CityName)
+                VALUES 
+                    (?)""", city_name)
+            self.connection.commit()
+            print("INSERTED")
+        except Exception as e:
+            print(str(e) + '\n')
+            print('An error occured. Please try again and check your data\n\n')
