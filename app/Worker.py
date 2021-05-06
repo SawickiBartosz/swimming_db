@@ -16,3 +16,4 @@ class Worker():
             for i in range(n_col):
                 print(str(e[i]).ljust(max_length_column[i]), end='')
             print()
+        print('\n\n---------------------')
