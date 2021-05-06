@@ -112,7 +112,7 @@ class Inserter(Worker):
     
         # insert a row
         cursor.execute("""
-            INSERT INTO Cities 
+            INSERT INTO Clubs 
                 (ShortName, ClubName, CityName)
             VALUES 
                 (?, ?, ?)""", short_name, club_name, city_name)
