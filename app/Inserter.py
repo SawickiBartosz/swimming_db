@@ -1,9 +1,6 @@
+from Worker import Worker
 
-class Inserter():
-    def __init__(self, connection, cursor, checker):
-        self.connection = connection
-        self.cursor = cursor
-        self.checker = checker
+class Inserter(Worker):
 
     def run(self):
         print('\n\nWhere to insert a new row?')

@@ -1,10 +1,8 @@
+from Worker import Worker
 
-class Modifier():
-    def __init__(self, connection, cursor, checker):
-        self.connection = connection
-        self.cursor = cursor
-        self.checker = checker
 
+class Modifier(Worker):
+    
     def run(self):
         print('\n\nWhat do you want to modify?')
         print("1. Change swimmer's club")
