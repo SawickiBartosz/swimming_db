@@ -61,7 +61,7 @@ class Inserter(Worker):
         distance_name = input('Distance name ([distance in m] [style])')
 
         # check if swimmer exists
-        swimmer_id = self.checker.check_coach_exist(first_name, last_name)
+        swimmer_id = self.checker.check_swimmer_exist(first_name, last_name)
         if not swimmer_id:
             return
 
