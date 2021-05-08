@@ -1,19 +1,7 @@
 from Worker import Worker
 
+
 class Reporter(Worker):
-    # def run(self):
-    #     print('\n\nWhat kind of report you want to generate?')
-    #     print('1. Personal best times of a swimmer')
-    #     print('2. Ranking of a distance')
-    #     print('Anything else to exit')
-    #     choice = input()
-    #     if choice == '1':
-    #         self._report_pb()
-    #     elif choice == '2':
-    #         self._report_ranking()
-    #     else:
-    #         return
-    
 
     def _utilize_choice(self, choice):
         if choice == '1':
@@ -22,7 +10,6 @@ class Reporter(Worker):
             self._report_ranking()
         else:
             return
-
 
     def _print_menu(self):
         print('\n\nWhat kind of report you want to generate?')
@@ -49,8 +36,8 @@ class Reporter(Worker):
             JOIN Swimmers sw on s.SwimmerID=sw.SwimmerID
             WHERE sw.FirstName = ? AND sw.LastName = ?
             GROUP BY d.DistanceName, 
-                    StartDate;""", 
-                first_name, last_name)
+                    StartDate;""",
+                            first_name, last_name)
         self._pretty_print()
 
     def _report_ranking(self):
@@ -59,7 +46,7 @@ class Reporter(Worker):
 
         if not self.checker.check_distance_exist(distance_name):
             return
-        
+
         sex = input('Sex (0=Not Known 1=Male 2=Female ): ')
 
         self.cursor.execute("""--sql
@@ -81,5 +68,5 @@ class Reporter(Worker):
                 c.FirstName, 
                 c.LastName
             ORDER BY BestTime ASC;""",
-            distance_name, sex)
+                            distance_name, sex)
         self._pretty_print()

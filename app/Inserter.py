@@ -1,29 +1,7 @@
 from Worker import Worker
 
+
 class Inserter(Worker):
-
-    # def run(self):
-    #     print('\n\nWhere to insert a new row?')
-    #     print('1. Swimmers')
-    #     print('2. Starts')
-    #     print('3. Coaches')
-    #     print('4. Clubs')
-    #     print('5. Cities')
-
-    #     print('Anything else to exit')
-    #     choice = input()
-    #     if choice == '1':
-    #         self._insert_swimmers()
-    #     elif choice == '2':
-    #         self._insert_starts()
-    #     elif choice == '3':
-    #         self._insert_coaches()
-    #     elif choice == '4':
-    #         self._insert_clubs()
-    #     elif choice == '5':
-    #         self._insert_cities()
-    #     else:
-    #         return
 
     def _print_menu(self):
         print('\n\nWhere to insert a new row?')
@@ -49,7 +27,6 @@ class Inserter(Worker):
             self._insert_cities()
         else:
             return
-        
 
     def _insert_swimmers(self):
         cursor = self.cursor
@@ -62,30 +39,29 @@ class Inserter(Worker):
         # check if club exists
         if not self.checker.check_club_exist(club_short_name):
             return
-        
+
         coach_last_name = input('Coach last name: ')
         coach_first_name = input('Coach first name: ')
 
         # check if coach exists
-        coach_id = self.checker.check_coach_exist(coach_first_name, coach_last_name)
+        coach_id = self.checker.check_coach_exist(
+            coach_first_name, coach_last_name)
         if not coach_id:
             return
-        
+
         try:
             # insert a row
             cursor.execute("""
                 INSERT INTO Swimmers 
                     (LastName, FirstName, Sex, ClubShortName, CoachID)
                 VALUES 
-                    (?, ?, ?, ?, ?)""", 
-                    last_name, first_name, sex, club_short_name, coach_id[0])
+                    (?, ?, ?, ?, ?)""",
+                           last_name, first_name, sex, club_short_name, coach_id[0])
             self.connection.commit()
             print("INSERTED")
         except Exception as e:
             print(str(e) + '\n')
             print('An error occured. Please try again and check your data\n\n')
-
-
 
     def _insert_starts(self):
         cursor = self.cursor
@@ -102,11 +78,11 @@ class Inserter(Worker):
 
         # check if distance exists
         if not self.checker.check_distance_exist(distance_name):
-           return
+            return
 
         start_date = input('Start date (YYYY-MM-DD): ')
         swim_time = input('Swim time (hh:mm[:ss][.fractional seconds])')
-        
+
         try:
             # insert a row
             cursor.execute("""
@@ -143,8 +119,6 @@ class Inserter(Worker):
             print(str(e) + '\n')
             print('An error occured. Please try again and check your data\n\n')
 
-
-
     def _insert_clubs(self):
         cursor = self.cursor
         print('\nType in information')
@@ -167,8 +141,6 @@ class Inserter(Worker):
         except Exception as e:
             print(str(e) + '\n')
             print('An error occured. Please try again and check your data\n\n')
-
-
 
     def _insert_cities(self):
         cursor = self.cursor

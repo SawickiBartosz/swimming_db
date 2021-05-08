@@ -12,15 +12,16 @@ from settings import password, username
 
 
 def connect(username, password):
-        server = 'localhost' 
-        database = 'SwimmingDB'  
-        cnxn = pyodbc.connect(
-            'DRIVER={ODBC Driver 17 for SQL Server};SERVER='+
-            server+';DATABASE='+database+';UID='+username+
-            ';PWD='+ password)
-        cursor = cnxn.cursor()
-        print('Hello ' + username + '! Welcome to SwimBase!')
-        return cnxn, cursor
+    server = 'localhost'
+    database = 'SwimmingDB'
+    cnxn = pyodbc.connect(
+        'DRIVER={ODBC Driver 17 for SQL Server};SERVER=' +
+        server+';DATABASE='+database+';UID='+username +
+        ';PWD=' + password)
+    cursor = cnxn.cursor()
+    print('Hello ' + username + '! Welcome to SwimBase!')
+    return cnxn, cursor
+
 
 def menu():
     print('\n\nChoose a number:')
@@ -33,13 +34,14 @@ def menu():
     choice = input()
     return choice
 
+
 def exit():
     cls()
     print('See You!')
 
 
 def cls():
-    os.system('cls' if os.name=='nt' else 'clear')
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 
 def main(*args, **kwargs):

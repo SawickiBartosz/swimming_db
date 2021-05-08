@@ -1,5 +1,6 @@
 from abc import ABCMeta, abstractclassmethod
 
+
 class Worker(metaclass=ABCMeta):
     def __init__(self, connection, cursor, checker):
         self.connection = connection
@@ -12,7 +13,7 @@ class Worker(metaclass=ABCMeta):
         report = self.cursor.fetchall()
         report.insert(0, [x[0] for x in self.cursor.description])
         for i in range(n_col):
-            max_length_column.append(max(len(str(e[i]))+2 for e in report))    
+            max_length_column.append(max(len(str(e[i]))+2 for e in report))
 
         for e in report:
             for i in range(n_col):
@@ -23,7 +24,7 @@ class Worker(metaclass=ABCMeta):
     def run(self):
         choice = self._print_menu()
         self._utilize_choice(choice)
-    
+
     @abstractclassmethod
     def _print_menu(self):
         pass
