@@ -1,18 +1,36 @@
 from Worker import Worker
 
 class Reporter(Worker):
-    def run(self):
-        print('\n\nWhat kind of report you want to generate?')
-        print('1. Personal best times of a swimmer')
-        print('2. Ranking of a distance')
-        print('Anything else to exit')
-        choice = input()
+    # def run(self):
+    #     print('\n\nWhat kind of report you want to generate?')
+    #     print('1. Personal best times of a swimmer')
+    #     print('2. Ranking of a distance')
+    #     print('Anything else to exit')
+    #     choice = input()
+    #     if choice == '1':
+    #         self._report_pb()
+    #     elif choice == '2':
+    #         self._report_ranking()
+    #     else:
+    #         return
+    
+
+    def _utilize_choice(self, choice):
         if choice == '1':
             self._report_pb()
         elif choice == '2':
             self._report_ranking()
         else:
             return
+
+
+    def _print_menu(self):
+        print('\n\nWhat kind of report you want to generate?')
+        print('1. Personal best times of a swimmer')
+        print('2. Ranking of a distance')
+        print('Anything else to exit')
+        choice = input()
+        return choice
 
     def _report_pb(self):
         print('\nWhose personal bests you want to show?')

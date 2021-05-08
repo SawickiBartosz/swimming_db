@@ -1,4 +1,6 @@
-class Worker():
+from abc import ABCMeta, abstractclassmethod
+
+class Worker(metaclass=ABCMeta):
     def __init__(self, connection, cursor, checker):
         self.connection = connection
         self.cursor = cursor
@@ -17,3 +19,15 @@ class Worker():
                 print(str(e[i]).ljust(max_length_column[i]), end='')
             print()
         print('\n\n---------------------')
+
+    def run(self):
+        choice = self._print_menu()
+        self._utilize_choice(choice)
+    
+    @abstractclassmethod
+    def _print_menu(self):
+        pass
+
+    @abstractclassmethod
+    def _utilize_choice(self, choice):
+        pass

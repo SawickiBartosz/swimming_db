@@ -25,6 +25,32 @@ class Inserter(Worker):
         else:
             return
 
+    def _print_menu(self):
+        print('\n\nWhere to insert a new row?')
+        print('1. Swimmers')
+        print('2. Starts')
+        print('3. Coaches')
+        print('4. Clubs')
+        print('5. Cities')
+        print('Anything else to exit')
+        choice = input()
+        return choice
+
+    def _utilize_choice(self, choice):
+        if choice == '1':
+            self._insert_swimmers()
+        elif choice == '2':
+            self._insert_starts()
+        elif choice == '3':
+            self._insert_coaches()
+        elif choice == '4':
+            self._insert_clubs()
+        elif choice == '5':
+            self._insert_cities()
+        else:
+            return
+        
+
     def _insert_swimmers(self):
         cursor = self.cursor
         print('\nType in information')

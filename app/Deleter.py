@@ -21,6 +21,28 @@ class Deleter(Worker):
             self._delete_selected_swimmer()
         else:
             return
+
+    def _print_menu(self):
+        print('\n\nWhat do you want to delete?')
+        print('1. All swimmers that have 0 starts')
+        print('2. All starts older than one year')
+        print('3. Coaches who are coaches to 0 swimmers')
+        print('4. Selected swimmer')
+        print('Anything else to exit')
+        choice = input()
+        return choice
+
+    def _utilize_choice(self, choice):
+        if choice == '1':
+            self._delete_swimmers()
+        elif choice == '2':
+            self._delete_starts()
+        elif choice == '3':
+            self._delete_coaches()
+        elif choice == '4':
+            self._delete_selected_swimmer()
+        else:
+            return
         
     def _delete_swimmers(self):
         self.cursor.execute("""
