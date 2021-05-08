@@ -3,24 +3,24 @@ from Worker import Worker
 
 class Modifier(Worker):
     
-    def run(self):
-        print('\n\nWhat do you want to modify?')
-        print("1. Change swimmer's club")
-        print("2. Change swimmer's coach")
-        print("3. Change coach's club")
-        print("4. Modify all of swimmer's data")
-        print('Anything else to exit')
-        choice = input()
-        if choice == '1':
-            self._mod_swimmers_club()
-        elif choice == '2':
-            self._mod_swimmers_coach()
-        elif choice == '3':
-            self._mod_coach_club()
-        elif choice == '4':
-            self._mod_all_swimmer()
-        else:
-            return
+    # def run(self):
+    #     print('\n\nWhat do you want to modify?')
+    #     print("1. Change swimmer's club")
+    #     print("2. Change swimmer's coach")
+    #     print("3. Change coach's club")
+    #     print("4. Modify all of swimmer's data")
+    #     print('Anything else to exit')
+    #     choice = input()
+    #     if choice == '1':
+    #         self._mod_swimmers_club()
+    #     elif choice == '2':
+    #         self._mod_swimmers_coach()
+    #     elif choice == '3':
+    #         self._mod_coach_club()
+    #     elif choice == '4':
+    #         self._mod_all_swimmer()
+    #     else:
+    #         return
 
 
     def _print_menu(self):
