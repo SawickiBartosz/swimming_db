@@ -55,7 +55,7 @@ class Modifier(Worker):
 
         # check if coach exists
         coach_id = self.checker.check_coach_exist(
-            coach_first_name, coach_last_name)
+            new_coach_first, new_coach_last)
         if not coach_id:
             return
         try:
